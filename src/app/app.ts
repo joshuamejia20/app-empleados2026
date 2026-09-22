@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { Empleado } from './empleado.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { EmpleadoHijoC } from './empleado-hijo-c/empleado-hijo-c';
 
 @Component({
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, EmpleadoHijoC],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

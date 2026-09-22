@@ -25,15 +25,6 @@
     </div>
   </form>
 </div>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      @for (empleado of empleados; track empleado.nombre) {
-        <div>
-          {{ $index + 1 }} {{ empleado.nombre }} - {{ empleado.apellido }} - {{ empleado.cargo }} -
-          {{ empleado.salario }}
-        </div>
-      } @empty {}
-    </div>
-  </div>
-</div>
+@for (empleado of empleados; track $index; let i = $index){
+  <app-empleado-hijo-c [empleadoLista]="empleado" [indice]="i"></app-empleado-hijo-c>
+}
