@@ -18,6 +18,8 @@ export class ActualizaComponent implements OnInit {
   cuadroSalario: number = 0;
   empleados: Empleado[];
   indice: number;
+  accion: number;
+  textoAccion: string;
 
   constructor(private router: Router, private empleadosService: empleadosService, private route: ActivatedRoute){}
 
@@ -30,6 +32,9 @@ export class ActualizaComponent implements OnInit {
     this.cuadroApellido = empleado.apellido;
     this.cuadroCargo = empleado.cargo;
     this.cuadroSalario = empleado.salario;
+
+    this.accion=parseInt(this.route.snapshot.queryParams['accion']);
+    this.textoAccion = (this.accion == 1) ? "Actualizar empleado" : "Eliminar empleado";
   }
 
   volverHome(){
@@ -55,4 +60,19 @@ export class ActualizaComponent implements OnInit {
 
     /*this.miServicio.muestra_mensaje("Nombre del empleado: " + mi_empleado.nombre + " " + mi_empleado.apellido);*/
   }
+
+  eliminar_empleado() {
+    this.empleadosService.eliminar_empleado(this.indice);
+    this.volverHome();
+  }
+
+  accion_empleado(){
+    if(this.accion==1){
+      this.actualizar_empleado();
+    }else{
+      this.eliminar_empleado();
+    }
+  }
+
+
 }
