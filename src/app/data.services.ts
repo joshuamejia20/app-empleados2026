@@ -6,13 +6,18 @@ import { Empleado } from "./empleado.model";
   providedIn: 'root'
 })
 export class DataServices {
-  url = 'https://misempleados20dkfjsdjflksdjfksdkjfksdljfldsjglñds26-default-rtdb.firebaseio.com/';
+  url = 'https://misempleados2026-default-rtdb.firebaseio.com/';
   constructor(private httpClient: HttpClient) {}
 
   guardar_empleados(empleados: Empleado[]) {
-   this.httpClient.post(this.url + 'pupusa.json', empleados).subscribe({
+   this.httpClient.put(this.url + 'datos.json', empleados).subscribe({
       next: (response) => console.log("Se han guardado los empleados"),
       error: (error) => console.log('Error ' + error.error)
    })
+  }
+
+  cargar_empleados() {
+    return this.httpClient.get(this.url + '/datos.json');
+    //return this.httpClient.get<{ [key: string]: Empleado }>(this.url + 'datos.json');
   }
 }

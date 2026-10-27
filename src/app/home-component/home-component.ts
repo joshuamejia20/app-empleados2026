@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Empleado } from '../empleado.model';
 import { ServicioEmpleado } from '../servicio-empleado';
 import { empleadosService } from '../empleados.service';
@@ -18,15 +18,26 @@ export class HomeComponent implements OnInit {
   cuadroApellido: string = "";
   cuadroCargo: string = "";
   cuadroSalario: number = 0;
-  empleados: Empleado[];
+  empleados: Empleado[] = [];
 
 
-  constructor(private miServicio: ServicioEmpleado, private empleadoService: empleadosService) {
+  constructor(
+    private miServicio: ServicioEmpleado,
+    private empleadoService: empleadosService,
+    private DetectorDeCambios: ChangeDetectorRef
+  ) {
     //this.empleados = this.empleadoService.empleados;
   }
 
   ngOnInit() {
-    this.empleados = this.empleadoService.empleados;
+    //this.empleados = this.empleadoService.empleados;
+    this.empleadoService.obtener_empleados().subscribe(
+      misEmpleados =>{
+        this.empleados = Object.values(misEmpleados ?? {});
+        this.empleadoService.set_empleados(this.empleados);
+        this.DetectorDeCambios.markForCheck();
+      }
+    );
   }
 
 

@@ -5,12 +5,13 @@ import { DataServices } from './data.services';
 
 @Injectable({providedIn: 'root'})
 export class empleadosService {
-  empleados: Empleado[] = [
+ /*empleados: Empleado[] = [
     new Empleado("Josue", "Mejia", "Presidente", 5000),
     new Empleado("Esdras", "Palacios", "Gerente", 4000),
     new Empleado("Jorge", "Menjivar", "Supervisor", 3000),
     new Empleado("Javier", "Contreras", "Empleado", 2000),
-  ];
+  ];*/
+  empleados: Empleado[]=[];
 
   constructor(private servicioMensaje: ServicioEmpleado, private dataService: DataServices) {}
 
@@ -38,6 +39,15 @@ export class empleadosService {
 
   eliminar_empleado(indice: number){
     this.empleados.splice(indice, 1);
+  }
+
+  obtener_empleados(){
+    return this.dataService.cargar_empleados();
+    //nos devuelve un observable, permite operaciones asincronas(2do plano) - actualiza sin hacer un select
+  }
+
+  set_empleados(misEmpleados:Empleado[]){
+    this.empleados = misEmpleados;
   }
 
 }
