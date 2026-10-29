@@ -56,7 +56,9 @@ export class ActualizaComponent implements OnInit {
     this.cuadroCargo = "";
     this.cuadroSalario = 0;
 
-    this.volverHome();
+    setTimeout(() => {
+      this.volverHome();
+    }, 100);
 
     /*this.miServicio.muestra_mensaje("Nombre del empleado: " + mi_empleado.nombre + " " + mi_empleado.apellido);*/
   }

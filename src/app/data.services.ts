@@ -20,4 +20,12 @@ export class DataServices {
     return this.httpClient.get(this.url + '/datos.json');
     //return this.httpClient.get<{ [key: string]: Empleado }>(this.url + 'datos.json');
   }
+
+  actualizar_empleado(indice: number, empleado: Empleado){
+    //return this.httpClient.put(this.url + "/datos/"+indice+".json", empleado);
+    this.httpClient.put(this.url + "/datos/"+indice+".json", empleado).subscribe({
+     next: (response) =>console.log("Se ha actualizado el empleado " + response),
+     error: (error)=>console.log("Error: " + error)
+  })
+  }
 }
