@@ -18,6 +18,16 @@
       <li class="nav-item active">
         <a class="nav-link" href="/contacto">Contacto</a>
       </li>
+      @if (!estaLogueado()) {
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Login</a>
+        </li>
+      }@else{
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/logout">Logout</a>
+        </li>
+      }
+
     </ul>
   </div>
 </nav>
